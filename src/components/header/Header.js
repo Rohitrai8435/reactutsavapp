@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { HiOutlineSearch } from "react-icons/hi";
 import { SlMenu } from "react-icons/sl";
+import { IoIosNotificationsOutline } from "react-icons/io";
 import { VscChromeClose } from "react-icons/vsc";
 import { useNavigate, useLocation } from "react-router-dom";
 
 import "./header.css";
 
 import ContentWrapper from "../contentWrapper/ContentWrapper";
-import logo from "../../assets/movix-logo.svg";
+import logo from "../../assets/utsavlogo.png";
 
 const Header = () => {
   const [show, setShow] = useState("top");
@@ -78,13 +79,25 @@ const Header = () => {
         </div>
         <ul className="menuItems">
           <li className="menuItem" onClick={() => navigationHandler("movie")}>
-            Movies
+            Home
           </li>
           <li className="menuItem" onClick={() => navigationHandler("tv")}>
-            TV Shows
+            Upcoming
+          </li>
+          <li className="menuItem" onClick={() => navigationHandler("tv")}>
+            Latest
+          </li>
+          <li className="menuItem" onClick={() => navigationHandler("tv")}>
+            Popular
+          </li>
+          <li className="menuItem" onClick={() => navigationHandler("tv")}>
+            Top Rated
           </li>
           <li className="menuItem">
             <HiOutlineSearch onClick={openSearch} />
+          </li>
+          <li className="menuItem">
+            <IoIosNotificationsOutline onClick={openSearch} />
           </li>
         </ul>
 

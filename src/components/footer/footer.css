@@ -1,10 +1,37 @@
 .footer {
   background-color: var(--black3);
+
   padding: 50px 0;
   color: white;
   position: relative;
 }
-
+.wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.copyrights {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.home {
+  display: flex;
+  flex-direction: column;
+}
+.contact {
+  display: flex;
+  gap: 20px;
+  padding: 10px;
+  flex-direction: row;
+}
+.text {
+  font-size: smaller;
+  line-height: 1.5;
+  opacity: 0.5;
+}
 .footer .contentWrapper {
   display: flex;
   align-items: center;

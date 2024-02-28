@@ -5,9 +5,9 @@ import { fetchDataFromApi } from "./utils/api";
 import { useSelector, useDispatch } from "react-redux";
 import { getApiConfiguration, getGenres } from "./store/homeSlice";
 
- import Header from "./components/header/Header";
- import Footer from "./components/footer/Footer";
-// import Home from "./pages/home/Home";
+import Header from "./components/header/Header";
+import Footer from "./components/footer/Footer";
+import Home from "./pages/home/Home";
 // import Details from "./pages/details/Details";
 // import SearchResult from "./pages/searchResult/SearchResult";
 // import Explore from "./pages/explore/Explore";
@@ -16,27 +16,29 @@ import { getApiConfiguration, getGenres } from "./store/homeSlice";
 function App() {
   const dispatch = useDispatch();
   const { url } = useSelector((state) => state.home);
-  console.log(url);
+  // console.log(url);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const data = await fetchDataFromApi("/movie/popular");
-        console.log(data);
-        dispatch(getApiConfiguration(data));
-        dispatch(getGenres(data));
-      } catch (error) {
-        console.error(error.message);
-      }
-    };
-
-    fetchData();
+    fetchApiConfig();
   }, []);
+  const fetchApiConfig = () => {
+    fetchDataFromApi("/configuration").then((res) => {
+      // console.log(res);
+      const url = {
+        backdrop: res?.images?.secure_base_url + "original",
+        poster: res?.images?.secure_base_url + "original",
+        profile: res?.images?.secure_base_url + "original",
+      };
+      dispatch(getApiConfiguration(url));
+    });
+  };
 
   return (
     <BrowserRouter>
       <Header />
-      <Routes></Routes>
+      <Routes>
+        <Route path="/" element={<Home />} />
+      </Routes>
       <Footer />
     </BrowserRouter>
   );
